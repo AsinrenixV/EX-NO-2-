@@ -35,9 +35,65 @@ STEP-5: Display the obtained cipher text.
 
 
 Program:
+```
+key = input("Key: ").upper().replace(" ", "")
+text = input("Text: ").upper().replace(" ", "").replace("J", "I")
+
+matrix = ""
+for c in key:
+    if c not in matrix and c != 'J':
+        matrix += c
+
+for c in "ABCDEFGHIKLMNOPQRSTUVWXYZ":
+    if c not in matrix:
+        matrix += c
+
+def playfair(msg, mode):
+    result = ""
+    i = 0
+    while i < len(msg):
+        a = msg[i]
+        b = msg[i+1] if i+1 < len(msg) else 'X'
+
+        r1, c1 = matrix.index(a)//5, matrix.index(a)%5
+        r2, c2 = matrix.index(b)//5, matrix.index(b)%5
+
+        if r1 == r2:   
+            if mode == "E":
+                result += matrix[r1*5 + (c1+1)%5]
+                result += matrix[r2*5 + (c2+1)%5]
+            else:
+                result += matrix[r1*5 + (c1-1)%5]
+                result += matrix[r2*5 + (c2-1)%5]
+
+        elif c1 == c2: 
+            if mode == "E":
+                result += matrix[((r1+1)%5)*5 + c1]
+                result += matrix[((r2+1)%5)*5 + c2]
+            else:
+                result += matrix[((r1-1)%5)*5 + c1]
+                result += matrix[((r2-1)%5)*5 + c2]
+
+        else:         
+            result += matrix[r1*5 + c2]
+            result += matrix[r2*5 + c1]
+
+        i += 2
+    return result
+
+encrypted = playfair(text, "E")
+print("Encrypted:", encrypted)
+
+decrypted = playfair(encrypted, "D")
+print("Decrypted:", decrypted)
+```
+
 
 
 
 
 
 Output:
+<img width="1842" height="577" alt="image" src="https://github.com/user-attachments/assets/bcb8c592-1843-4d45-9d00-b4e71e3a85da" />
+Result:
+Thus the program executed successfully.
