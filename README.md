@@ -34,7 +34,7 @@ STEP-5: Display the obtained cipher text.
 
 
 
-Program:
+## Program:
 ```
 key = input("Key: ").upper().replace(" ", "")
 text = input("Text: ").upper().replace(" ", "").replace("J", "I")
@@ -93,7 +93,8 @@ print("Decrypted:", decrypted)
 
 
 
-Output:
+## Output:
 <img width="1842" height="577" alt="image" src="https://github.com/user-attachments/assets/bcb8c592-1843-4d45-9d00-b4e71e3a85da" />
-Result:
+
+## Result:
 Thus the program executed successfully.
